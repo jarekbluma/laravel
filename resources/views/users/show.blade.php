@@ -12,7 +12,7 @@
                     <p>
                     </p>
                     <p>{{ $user->email }}</p>
-                    <p>{{ $user->name }}</p>
+                    
                 </div>
             </div>
         </div>
