@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -58,7 +59,14 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        return view('users.edit');
+        if ($id != Auth::id()) 
+        {
+           abort(403, 'Brak dostepu!');    
+        }
+
+        $user = Auth::user();
+
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -70,7 +78,18 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($id != Auth::id()) 
+        {
+           abort(403, 'Brak dostepu!');    
+        }
+
+        $user = User::FindOrFail($id);
+        $user -> name = $request -> name;
+        $user -> email = $request -> email;
+        $user -> save();
+
+        return back();
+
     }
 
     /**
