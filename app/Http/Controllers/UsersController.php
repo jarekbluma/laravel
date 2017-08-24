@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
@@ -82,6 +84,15 @@ class UsersController extends Controller
         {
            abort(403, 'Brak dostepu!');    
         }
+
+         $this -> validate($request,[
+                'name' => 'required|min:3|max:64',
+                'email' => [
+                    'required',
+                    'email',
+                    Rule::unique('users') -> ignore($id),
+                ],
+            ]);   
 
         $user = User::FindOrFail($id);
         $user -> name = $request -> name;
