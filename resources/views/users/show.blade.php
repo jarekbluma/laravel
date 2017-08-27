@@ -12,6 +12,7 @@
                 </div>
 
                 <div class="panel-body text-center">
+                    <img src="{{ asset('storage/users/' . $user -> id . '/avatar/' . $user -> avatar )}}" class="img-responsive">
                     <h2><a href="{{ url('/users/' . $user->id) }}">{{ $user->name }}</a></h2>
                     <p>
                     </p>

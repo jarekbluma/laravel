@@ -7,10 +7,26 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Edycja użytkownika</div>
 				<div class="panel-body">
-                    <form action=" {{ url('/users/' . $user -> id) }}" method="POST">
+
+                    <img src="{{ asset('storage/users/' . $user -> id . '/avatar/' . $user -> avatar )}}" class="img-responsive">
+                    <form action=" {{ url('/users/' . $user -> id) }}" method="POST" enctype="multipart/form-data">
                     	{{ csrf_field() }}
                     	{{ method_field('PATCH') }}
                     	
+                        <div class="row">
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
+                                    <label for="">Avatar</label>
+                                    <input type="file" name="avatar" class="form-control">
+                                    @if($errors -> has('avatar'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors -> first('avatar') }}</strong>
+                                        </span>
+                                    @endif   
+                                </div>
+                            </div>
+                            
+                        </div>
                     	<div class="row">
                     		<div class="col-sm-10 col-sm-offset-1">
                     			<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
