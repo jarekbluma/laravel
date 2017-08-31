@@ -35,6 +35,15 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
+                    
+                         
+                          <form action="{{ url('/search') }}" method="GET" class="navbar-form navbar-left">
+                                <input class="form-control" type="text" placeholder="Szukaj..." name="q">
+                                <button class="btn btn-outline-success" type="submit">Szukaj</button>
+                          </form>
+              
+
+
                     <ul class="nav navbar-nav">
                         &nbsp;
                     </ul>

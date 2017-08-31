@@ -20,3 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/users', 'UsersController', ['exept' => ['index', 'create', 'destroy', 'store']]);
+
+Route::resource('/friends', 'UsersController', ['exept' => ['create', 'show', 'edit']]);
+
+Route::get('/search', 'SearchController@users');
