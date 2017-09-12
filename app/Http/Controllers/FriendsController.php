@@ -5,9 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Friend;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class FriendsController extends Controller
 {
+    
+    public function index($user_id)
+    {
+        $friends = User::findOrFail($user_id) -> friends();
+        return view('friends.index', compact('friends'));
+    }
+
+
+
+
     /**
      * Display a listing of the resource.
      *
