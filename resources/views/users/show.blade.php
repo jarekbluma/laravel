@@ -9,7 +9,21 @@
         <div class="col-md-7">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae molestias repellat earum amet adipisci obcaecati! Consequatur, voluptatem, harum? Quis commodi unde assumenda neque doloribus cum suscipit, dolorum dolor itaque harum.</p>
+                    <form action="{{ url('/posts') }}" method="POST">
+                        {{ csrf_field() }}
+                                            
+                                <div class="form-group{{ $errors->has('post_content') ? ' has-error' : '' }}">
+                                             <textarea name="post_content" cols="85" rows="5" placeholder="O czym myślisz?"></textarea><br>
+                                              <button type="submit" class="btn btn-default pull-right">Dodaj post</button> 
+                                                    @if($errors -> has('post_content'))
+                                                                   
+                                                                    <span class="help-block">
+                                                                        <strong>{{ $errors -> first('post_content') }}</strong>
+                                                                    </span>
+                                                    @endif                                
+                                </div>
+
+                    </form>                       
                 </div>
             </div>
         </div>

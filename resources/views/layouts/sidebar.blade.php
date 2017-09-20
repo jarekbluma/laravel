@@ -13,7 +13,9 @@
                     </p>
                     <p>{{ $user->email }}</p>
 
-
+                    <a href="{{ url('/users/' . $user -> id . '/friends') }}">Znajomi</a> 
+                    <span class="label label-primary">{{ $user -> friends() -> count() }}</span> 
+                    <br><br>
                     @if (Auth::check() && $user ->id !== Auth::id())
 
                         @if ( ! friendship($user -> id) -> exists && ! has_invitation($user -> id))
